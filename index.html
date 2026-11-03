@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cahiers de Faël</title>
+<style>
+:root{--desk:#e6eaf3;--paper:#fbfcff;--ink:#1b2340;--muted:#56618a;--seyes:#d5ddf2;--margin:#e0574f;--accent:#2747c9;--accent-ink:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--desk:#0f1513;--paper:#1c2824;--ink:#edf1e8;--muted:#a3b1a8;--seyes:#28362f;--margin:#a8524a;--accent:#a7bfff;--accent-ink:#13201b;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--desk);color:var(--ink);font:17px/1.5 "Andika","Verdana",system-ui,sans-serif;padding:24px max(16px,env(safe-area-inset-left)) 48px max(16px,env(safe-area-inset-right))}
+main{max-width:720px;margin:0 auto;background:var(--paper);border-radius:4px;padding:24px 20px 28px 64px;position:relative;
+  background-image:linear-gradient(to right,transparent 41px,var(--margin) 41px,var(--margin) 43px,transparent 43px);box-shadow:0 10px 30px rgba(0,0,0,.12)}
+h1{margin:0 0 4px;font-size:clamp(1.6rem,6vw,2.3rem)}
+.lead{margin:0 0 20px;color:var(--muted)}
+h2{margin:22px 0 8px;font-size:1rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+li{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 0;border-bottom:1px solid var(--seyes)}
+.nom{flex:1 1 220px;font-weight:700;font-size:1.1rem}
+a.b{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border:2px solid var(--accent);border-radius:999px;color:var(--accent);font-weight:700;text-decoration:none}
+a.b.m{background:var(--accent);color:var(--accent-ink)}
+@media (max-width:480px){main{padding-left:52px}main{background-image:linear-gradient(to right,transparent 33px,var(--margin) 33px,var(--margin) 35px,transparent 35px)}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Les cahiers de Faël</h1>
+  <p class="lead">Choisis ton exercice. « Téléphone » pour le portable ou la tablette, « Ordinateur » pour le PC.</p>
+  <h2>Français</h2>
+  <ul>
+    <li><span class="nom">Mes mots de dictée</span><a class="b m" href="mots-dictee-mobile.html">Téléphone</a><a class="b" href="mots-dictee-pc.html">Ordinateur</a></li>
+    <li><span class="nom">Les pronoms personnels sujets</span><a class="b m" href="pronoms-sujets-mobile.html">Téléphone</a><a class="b" href="pronoms-sujets-pc.html">Ordinateur</a></li>
+    <li><span class="nom">On ou ont, et ou est</span><a class="b m" href="on-ont-et-est.html">Ouvrir</a></li>
+  </ul>
+  <h2>Mathématiques</h2>
+  <ul>
+    <li><span class="nom">Convertir les longueurs</span><a class="b m" href="longueurs-mobile.html">Téléphone</a><a class="b" href="longueurs-pc.html">Ordinateur</a></li>
+  </ul>
+  <h2>Anglais</h2>
+  <ul>
+    <li><span class="nom">Hello! My school things</span><a class="b m" href="anglais-mobile.html">Téléphone</a><a class="b" href="anglais-pc.html">Ordinateur</a></li>
+  </ul>
+</main>
+</body>
+</html>
