@@ -19,7 +19,7 @@
   --desk:#e6eaf3; --paper:#fbfcff; --ink:#1b2340; --muted:#56618a;
   --seyes:#d5ddf2; --seyes-bold:#a9b7e0; --margin:#e0574f;
   --accent:#2747c9; --accent-ink:#ffffff; --accent-soft:#e7ecfb;
-  --good:#13804a; --good-soft:#e1f3e8; --bad:#c23b22; --bad-soft:#fbe6e0;
+  --good:#13804a; --good-soft:#e1f3e8; --bad:#c23b22; --consigne:#c62828; --bad-soft:#fbe6e0;
   --shadow:rgba(27,35,64,.14);
   --f-ui:"Andika","Verdana",system-ui,sans-serif;
   --f-hand:"Playwrite FR Trad","Segoe Script","Bradley Hand",cursive;
@@ -30,7 +30,7 @@
     --desk:#0f1513; --paper:#1c2824; --ink:#edf1e8; --muted:#a3b1a8;
     --seyes:#28362f; --seyes-bold:#384b41; --margin:#a8524a;
     --accent:#a7bfff; --accent-ink:#13201b; --accent-soft:#25384a;
-    --good:#87dba9; --good-soft:#1d3a2b; --bad:#ff9f88; --bad-soft:#3e2520;
+    --good:#87dba9; --good-soft:#1d3a2b; --bad:#ff9f88; --consigne:#ff8a80; --bad-soft:#3e2520;
     --shadow:rgba(0,0,0,.45); color-scheme:dark;
   }
 }
@@ -38,7 +38,7 @@
   --desk:#0f1513; --paper:#1c2824; --ink:#edf1e8; --muted:#a3b1a8;
   --seyes:#28362f; --seyes-bold:#384b41; --margin:#a8524a;
   --accent:#a7bfff; --accent-ink:#13201b; --accent-soft:#25384a;
-  --good:#87dba9; --good-soft:#1d3a2b; --bad:#ff9f88; --bad-soft:#3e2520;
+  --good:#87dba9; --good-soft:#1d3a2b; --bad:#ff9f88; --consigne:#ff8a80; --bad-soft:#3e2520;
   --shadow:rgba(0,0,0,.45); color-scheme:dark;
 }
 @media (max-width:560px){ :root{ --u:6px; --mx:28px; --pad-r:14px; } }
@@ -108,7 +108,8 @@ h1{font-size:clamp(1.6rem, 6.5vw, 2.6rem); line-height:1.15; margin:4px 0 6px; f
 .point.ok{background:var(--good); border-color:var(--good)}
 .point.ko{background:var(--bad); border-color:var(--bad)}
 .point.ici{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft)}
-.consigne{order:0; margin:0; font-weight:700; font-size:1.05rem}
+.consigne{order:0; margin:0; font-weight:700; font-size:1.05rem; color:var(--consigne)}
+.consigne .lib{text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px}
 .consigne .type{display:block; font-family:var(--f-hand); font-weight:400; font-size:1rem; line-height:2.3; color:var(--accent)}
 
 .ligne{
@@ -322,7 +323,6 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
 
   <p class="parents">Pour les parents&#8239;: «&#8239;Mon tableau&#8239;» sert à mémoriser, les trois autres exercices à repérer et à utiliser les pronoms. Faites dire la question «&#8239;qui est-ce qui…&#8239;?&#8239;» à voix haute. Les phrases changent à chaque série.<span class="clavier"> Au clavier&#8239;: touches 1 à 4 pour répondre, Entrée pour continuer.</span></p>
 </div>
-
 <script id="gen">
 /* Générateur d'exercices sur les pronoms personnels sujets : fonctions pures, sans accès à la page. */
 (function(root){
@@ -545,7 +545,6 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
     ORDRE, PERS, LIGNES_CONJ, VERBES, FINS, EXPLI_PRON, PIEGES_REPERE, pretty, cap, pick, listeOu, voyelle };
 })(window);
 </script>
-
 <script>
 (function(){
   const PLATEFORME = 'pc'; /* 'pc' ou 'mobile' dans les fichiers téléchargeables */
@@ -733,7 +732,7 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
     else if (it.sub === 'table') txt = 'Quel pronom manque dans le tableau ?';
     else if (it.sub === 'situation') txt = 'Quel pronom sujet faut-il utiliser ?';
     else txt = 'Quel pronom correspond à cette personne ?';
-    return el('p', {class:'consigne'}, el('span', {class:'type', text:TITRES[it.type]}), P(txt));
+    return el('p', {class:'consigne'}, el('span', {class:'type', text:TITRES[it.type]}), el('span', {class:'lib', text:'Consigne'}), '\u202f: ', P(txt));
   }
 
   function zoneQuestion(it, fini, r){

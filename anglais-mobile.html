@@ -19,7 +19,7 @@
   --desk:#e6eaf3; --paper:#fbfcff; --ink:#1b2340; --muted:#56618a;
   --seyes:#d5ddf2; --seyes-bold:#a9b7e0; --margin:#e0574f;
   --accent:#2747c9; --accent-ink:#ffffff; --accent-soft:#e7ecfb;
-  --good:#13804a; --good-soft:#e1f3e8; --bad:#c23b22; --bad-soft:#fbe6e0;
+  --good:#13804a; --good-soft:#e1f3e8; --bad:#c23b22; --consigne:#c62828; --bad-soft:#fbe6e0;
   --shadow:rgba(27,35,64,.14);
   --ic-line:#1b2340; --ic-y:#f5c84c; --ic-r:#e4594f; --ic-rd:#b83e36; --ic-b:#5b86f0; --ic-bd:#3557c2;
   --ic-g:#45b37a; --ic-gd:#2c8455; --ic-p:#f4a3b9; --ic-s:#c3cad9; --ic-w:#ffffff; --ic-k:#1b2340; --ic-v:#9b6ee0;
@@ -32,7 +32,7 @@
     --desk:#0f1513; --paper:#1c2824; --ink:#edf1e8; --muted:#a3b1a8;
     --seyes:#28362f; --seyes-bold:#384b41; --margin:#a8524a;
     --accent:#a7bfff; --accent-ink:#13201b; --accent-soft:#25384a;
-    --good:#87dba9; --good-soft:#1d3a2b; --bad:#ff9f88; --bad-soft:#3e2520;
+    --good:#87dba9; --good-soft:#1d3a2b; --bad:#ff9f88; --consigne:#ff8a80; --bad-soft:#3e2520;
     --shadow:rgba(0,0,0,.45);
     --ic-line:#e9eee6; --ic-y:#d9b13f; --ic-r:#d3574e; --ic-rd:#9e3a33; --ic-b:#6f93f0; --ic-bd:#4766c9;
     --ic-g:#4fae7c; --ic-gd:#33865a; --ic-p:#e08ea6; --ic-s:#8f99ab; --ic-w:#e9eee6; --ic-k:#0f1513; --ic-v:#9a74d8;
@@ -43,7 +43,7 @@
   --desk:#0f1513; --paper:#1c2824; --ink:#edf1e8; --muted:#a3b1a8;
   --seyes:#28362f; --seyes-bold:#384b41; --margin:#a8524a;
   --accent:#a7bfff; --accent-ink:#13201b; --accent-soft:#25384a;
-  --good:#87dba9; --good-soft:#1d3a2b; --bad:#ff9f88; --bad-soft:#3e2520;
+  --good:#87dba9; --good-soft:#1d3a2b; --bad:#ff9f88; --consigne:#ff8a80; --bad-soft:#3e2520;
   --shadow:rgba(0,0,0,.45);
   --ic-line:#e9eee6; --ic-y:#d9b13f; --ic-r:#d3574e; --ic-rd:#9e3a33; --ic-b:#6f93f0; --ic-bd:#4766c9;
   --ic-g:#4fae7c; --ic-gd:#33865a; --ic-p:#e08ea6; --ic-s:#8f99ab; --ic-w:#e9eee6; --ic-k:#0f1513; --ic-v:#9a74d8;
@@ -116,7 +116,8 @@ h1{font-size:clamp(1.6rem, 6.5vw, 2.6rem); line-height:1.15; margin:4px 0 6px; f
 .point.ok{background:var(--good); border-color:var(--good)}
 .point.ko{background:var(--bad); border-color:var(--bad)}
 .point.ici{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft)}
-.consigne{order:0; margin:0; font-weight:700; font-size:1.05rem}
+.consigne{order:0; margin:0; font-weight:700; font-size:1.05rem; color:var(--consigne)}
+.consigne .lib{text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px}
 .consigne .type{display:block; font-family:var(--f-hand); font-weight:400; font-size:1rem; line-height:2.3; color:var(--accent)}
 
 .ligne{
@@ -826,7 +827,7 @@ html.pc .vocab{grid-template-columns:1fr}
       const n = st.series.length;
       page.append(el('div', {class:'avancement'}, el('span', {class:'compteur', text:`Question ${st.i + 1} sur ${n}`}), points()));
       const cons = A.consigne(it, c);
-      page.append(el('p', {class:'consigne'}, el('span', {class:'type', text:A.titres[it.type]}), typeof cons === 'string' ? P(cons) : cons));
+      page.append(el('p', {class:'consigne'}, el('span', {class:'type', text:A.titres[it.type]}), el('span', {class:'lib', text:'Consigne'}), '\u202f: ', typeof cons === 'string' ? P(cons) : cons));
       page.append(A.zone(it, c));
       if (A.extra) { const x = A.extra(it, c); if (x) page.append(x); }
 

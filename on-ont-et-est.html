@@ -17,7 +17,7 @@ html{color-scheme:light} body{margin:0} [hidden]{display:none!important}
   --desk:#e6eaf3; --paper:#fbfcff; --ink:#1b2340; --muted:#56618a;
   --seyes:#d5ddf2; --seyes-bold:#a9b7e0; --margin:#e0574f;
   --accent:#2747c9; --accent-ink:#ffffff; --accent-soft:#e7ecfb;
-  --good:#13804a; --good-soft:#e1f3e8; --bad:#c23b22; --bad-soft:#fbe6e0;
+  --good:#13804a; --good-soft:#e1f3e8; --bad:#c23b22; --consigne:#c62828; --bad-soft:#fbe6e0;
   --shadow:rgba(27,35,64,.14);
   --f-ui:"Andika","Verdana",system-ui,sans-serif;
   --f-hand:"Playwrite FR Trad","Segoe Script","Bradley Hand",cursive;
@@ -28,7 +28,7 @@ html{color-scheme:light} body{margin:0} [hidden]{display:none!important}
     --desk:#0f1513; --paper:#1c2824; --ink:#edf1e8; --muted:#a3b1a8;
     --seyes:#28362f; --seyes-bold:#384b41; --margin:#a8524a;
     --accent:#a7bfff; --accent-ink:#13201b; --accent-soft:#25384a;
-    --good:#87dba9; --good-soft:#1d3a2b; --bad:#ff9f88; --bad-soft:#3e2520;
+    --good:#87dba9; --good-soft:#1d3a2b; --bad:#ff9f88; --consigne:#ff8a80; --bad-soft:#3e2520;
     --shadow:rgba(0,0,0,.45); color-scheme:dark;
   }
 }
@@ -36,7 +36,7 @@ html{color-scheme:light} body{margin:0} [hidden]{display:none!important}
   --desk:#0f1513; --paper:#1c2824; --ink:#edf1e8; --muted:#a3b1a8;
   --seyes:#28362f; --seyes-bold:#384b41; --margin:#a8524a;
   --accent:#a7bfff; --accent-ink:#13201b; --accent-soft:#25384a;
-  --good:#87dba9; --good-soft:#1d3a2b; --bad:#ff9f88; --bad-soft:#3e2520;
+  --good:#87dba9; --good-soft:#1d3a2b; --bad:#ff9f88; --consigne:#ff8a80; --bad-soft:#3e2520;
   --shadow:rgba(0,0,0,.45); color-scheme:dark;
 }
 @media (max-width:560px){ :root{ --u:6px; --mx:30px; --pad-r:16px; } }
@@ -95,6 +95,8 @@ h1{font-size:clamp(1.9rem, 5.5vw, 2.6rem); line-height:1.15; margin:6px 0 8px; f
 .point.ko{background:var(--bad); border-color:var(--bad)}
 .point.ici{border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft)}
 
+.consigne{order:0; margin:0; font-weight:700; font-size:1.05rem; color:var(--consigne)}
+.consigne .lib{text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px}
 .ligne{
   position:relative; margin:12px calc(-1 * var(--pad-r)) 8px -16px;
   padding:calc(var(--u) * 2) var(--pad-r) calc(var(--u) * 2) 16px;
@@ -167,9 +169,9 @@ h1{font-size:clamp(1.9rem, 5.5vw, 2.6rem); line-height:1.15; margin:6px 0 8px; f
 
 /* Bilan */
 .bilan{display:flex; flex-direction:column; gap:14px; align-items:flex-start}
-.tampon{font-family:var(--f-hand); font-size:1.9rem; line-height:1.8; color:var(--good); margin:6px 0 0;
-  border:4px double var(--good); border-radius:14px; padding:2px 22px; transform:rotate(-4deg);
-  animation:tampon .35s ease-out both}
+.tampon{font-family:var(--f-hand); font-size:clamp(1.2rem, 6.2vw, 1.9rem); line-height:1.8; color:var(--good); margin:6px 4px 0;
+  border:4px double var(--good); border-radius:14px; padding:2px 20px; transform:rotate(-4deg);
+  animation:tampon .35s ease-out both; max-width:calc(100% - 14px)}
 .tampon.moyen{color:var(--accent); border-color:var(--accent)}
 @keyframes tampon{from{transform:rotate(-4deg) scale(1.25); opacity:.4} to{transform:rotate(-4deg) scale(1); opacity:1}}
 .score{margin:0; font-size:3rem; font-weight:700; line-height:1; font-variant-numeric:tabular-nums}
@@ -598,6 +600,7 @@ h1{font-size:clamp(1.9rem, 5.5vw, 2.6rem); line-height:1.15; margin:6px 0 8px; f
     page.append(el('div', {class:'avancement'},
       el('span', {class:'compteur', text:`Phrase ${st.i + 1} sur ${n}`}), points()));
 
+    page.append(el('p', {class:'consigne'}, el('span', {class:'lib', text:'Consigne'}), '\u202f: ', P(`Complète la phrase avec « ${H.CHOICES[it.pair][0]} » ou « ${H.CHOICES[it.pair][1]} ».`)));
     const [avant, apres] = H.split(it.tpl);
     const trou = el('span', {class:'trou'});
     if (!fini) { trou.textContent = ' '; trou.setAttribute('aria-label', 'mot à trouver'); }
