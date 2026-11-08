@@ -311,7 +311,7 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
       <input type="radio" name="mode" id="mode-choisis" value="choisis"><label for="mode-choisis">Je choisis</label>
       <input type="radio" name="mode" id="mode-qui" value="qui"><label for="mode-qui">Qui fait l’action&#8239;?</label>
       <input type="radio" name="mode" id="mode-fin" value="fin"><label for="mode-fin">La fin du verbe</label>
-      <input type="radio" name="mode" id="mode-ecris" value="ecris"><label for="mode-ecris">J’écris le verbe</label>
+      
       <input type="radio" name="mode" id="mode-tout" value="tout"><label for="mode-tout">Tout mélangé</label>
     </div>
     <div class="ligne-reglages">
@@ -346,7 +346,7 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
     </aside>
   </div>
 
-  <p class="parents">Pour les parents&#8239;: une appli à part pour la conjugaison, qui commence par le verbe prendre au présent. D’autres verbes pourront s’ajouter au fil des leçons. Le tableau «&#8239;Je retiens&#8239;» est caché pendant les questions et réapparaît à la correction. Les questions changent à chaque série.<span class="clavier"> Au clavier&#8239;: touches 1 à 4 pour répondre, lettres du clavier dans «&#8239;J’écris le verbe&#8239;», Entrée pour valider puis continuer.</span></p>
+  <p class="parents">Pour les parents&#8239;: une appli à part pour la conjugaison, qui commence par le verbe prendre au présent. D’autres verbes pourront s’ajouter au fil des leçons. Le tableau «&#8239;Je retiens&#8239;» est caché pendant les questions et réapparaît à la correction. Aucun verbe n’est écrit dans l’appli (l’écriture se fait sur papier). Les questions changent à chaque série.<span class="clavier"> Au clavier&#8239;: touches 1 à 4 pour répondre, Entrée pour valider puis continuer.</span></p>
 </div>
 
 <script id="gen">
@@ -454,8 +454,9 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
     return {type:'ecris', verbe:v.id, p:x.p, phrase:pick(v.phrases[x.p]), answer:bonne, tuiles:t, n:lettres.length};
   }
 
-  const TYPES = ['choisis', 'qui', 'fin', 'ecris'];
+  const TYPES = ['choisis', 'qui', 'fin'];
   function makeSeries(mode, pieges, n, verbe){
+    if (mode === 'ecris') mode = 'tout'; /* règle v13 : jamais de mot écrit dans l'appli */
     n = n || 10;
     const v = V(verbe);
     const pers = tirerPersonnes(n);
@@ -841,7 +842,7 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
 
   const APP = {
     id:'conj',
-    modes:['choisis','qui','fin','ecris','tout'],
+    modes:['choisis','qui','fin','tout'],
     titres:{choisis:'Je choisis', qui:'Qui fait l’action ?', fin:'La fin du verbe', ecris:'J’écris le verbe'},
     series:(mode, pieges, n) => G.makeSeries(mode, pieges, n, VERBE),
 

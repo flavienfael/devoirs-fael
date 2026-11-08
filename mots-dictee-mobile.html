@@ -326,7 +326,7 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
     <div class="puces" role="radiogroup" aria-label="Exercice">
       <input type="radio" name="mode" id="mode-ecoute" value="ecoute"><label for="mode-ecoute">Je choisis</label>
       <input type="radio" name="mode" id="mode-lettres" value="lettres"><label for="mode-lettres">Lettres manquantes</label>
-      <input type="radio" name="mode" id="mode-ecris" value="ecris"><label for="mode-ecris">J’écris le mot</label>
+      
       <input type="radio" name="mode" id="mode-prendre" value="prendre"><label for="mode-prendre">Le verbe prendre</label>
       <input type="radio" name="mode" id="mode-accords" value="accords"><label for="mode-accords">gros, grosse, différents</label>
       <input type="radio" name="mode" id="mode-tout" value="tout"><label for="mode-tout">Tout mélangé</label>
@@ -364,7 +364,7 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
     </aside>
   </div>
 
-  <p class="parents">Pour les parents&#8239;: l’appli reprend exactement la liste de dictée de Faël (agenda du 5 novembre), sans autre mot. Chaque question place le mot dans une petite phrase&#8239;; le bouton «&#8239;Écouter&#8239;» la lit à voix haute. «&#8239;J’écris le mot&#8239;» se fait avec des lettres à toucher&#8239;: pour une vraie dictée, dites le mot et faites-le écrire sur papier. Les questions changent à chaque série.<span class="clavier"> Au clavier&#8239;: touches 1 à 4 pour répondre, lettres du clavier dans «&#8239;J’écris le mot&#8239;», Entrée pour valider puis continuer.</span></p>
+  <p class="parents">Pour les parents&#8239;: l’appli reprend exactement la liste de dictée de Faël (agenda du 5 novembre), sans autre mot. Chaque question place le mot dans une petite phrase&#8239;; le bouton «&#8239;Écouter&#8239;» la lit à voix haute. Aucun mot n’est écrit dans l’appli&#8239;: pour la dictée, dites le mot et faites-le écrire sur papier. Les questions changent à chaque série.<span class="clavier"> Au clavier&#8239;: touches 1 à 4 pour répondre, Entrée pour valider puis continuer.</span></p>
 </div>
 
 <script id="gen">
@@ -513,10 +513,11 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
     return out.slice(0, n);
   }
   function makeSeries(mode, pieges, n){
+    if (mode === 'ecris') mode = 'tout'; /* règle v13 : jamais de mot écrit dans l'appli */
     n = n || 10;
     const mots = tirerMots(n);
     const acc = (() => { let o = []; while (o.length < n) o = o.concat(shuffle(ACCORDS)); return o; })();
-    const types = ['ecoute', 'lettres', 'ecris', 'prendre', 'accords'];
+    const types = ['ecoute', 'lettres', 'prendre', 'accords'];
     const out = [];
     for (let k = 0; k < n; k++) {
       const t = mode === 'tout' ? types[k % types.length] : mode;
@@ -912,7 +913,7 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
 
   const APP = {
     id:'dict',
-    modes:['ecoute','lettres','ecris','prendre','accords','tout'],
+    modes:['ecoute','lettres','prendre','accords','tout'],
     titres:{ecoute:'Je choisis', lettres:'Lettres manquantes', ecris:'J’écris le mot', prendre:'Le verbe prendre', accords:'gros, grosse, différents'},
     series:(mode, pieges, n) => G.makeSeries(mode, pieges, n),
 
