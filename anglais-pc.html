@@ -1117,7 +1117,7 @@ html.pc .vocab{grid-template-columns:1fr}
     },
 
     indice(it){
-      if (it.type === 'image') { const w = G.V(it.id).en.replace(/^(a|an|the) /, ''); return `Le mot commence par « ${w[0]} » et il a ${w.replace(/[^a-z]/g, '').length} lettres.`; }
+      if (it.type === 'image') return 'Regarde bien l’image et dis chaque mot anglais tout bas : lequel as-tu appris pour cet objet ?';
       if (it.type === 'ecoute') return [el('p', {text:'Voici le mot écrit :'}), el('p', {class:'mot-ecrit', lang:'en', text:dit(it)})];
       if (it.type === 'avoir') return it.kind === 'demande'
         ? 'Pour demander à quelqu’un s’il a un objet, on commence par Have you got…'

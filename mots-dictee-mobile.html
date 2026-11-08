@@ -909,6 +909,8 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
     ils:'Avec ils, elles : prennent, avec deux n.',
     elles:'Avec ils, elles : prennent, avec deux n.'
   };
+  /* Coup de pouce : la règle, jamais la forme exacte (règle v13) */
+  const REGLE_PRENDRE = (() => { const r = {je:'Pense à la règle : avec je et tu, le verbe finit souvent par -s.', tu:'Pense à la règle : avec je et tu, le verbe finit souvent par -s.', il:'Pense à la règle : avec il, elle ou on, il n’y a jamais de -s à la fin du verbe.', nous:'Pense à la règle : avec nous, le verbe finit presque toujours de la même façon. Tu t’en souviens ?', vous:'Pense à la règle : avec vous, le verbe finit presque toujours de la même façon. Tu t’en souviens ?', ils:'Pense à la règle : avec ils et elles, le verbe finit par des lettres qu’on n’entend pas.'}; r.elle = r.on = r.il; r.elles = r.ils; return r; })();
   const PERSONNE = {prends:'je, tu', prend:'il, elle, on', prenons:'nous', prenez:'vous', prennent:'ils, elles'};
 
   const APP = {
@@ -950,8 +952,8 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
         const debut = it.answer.slice(0, 2);
         return `Le mot a ${it.n} lettres et commence par « ${debut} ». ` + m.astuce;
       }
-      if (it.type === 'ecoute' || it.type === 'lettres') return m.astuce;
-      if (it.type === 'prendre') return 'Regarde qui fait l’action : ' + it.p + '. ' + RAISON_PRENDRE[it.p];
+      if (it.type === 'ecoute' || it.type === 'lettres') return 'Dis le mot tout bas en le découpant en syllabes. Pense aux lettres qu’on n’entend pas, puis regarde bien chaque choix, lettre par lettre.';
+      if (it.type === 'prendre') return 'Regarde qui fait l’action : ' + it.p + '. ' + REGLE_PRENDRE[it.p];
       return 'Cherche de qui on parle : ' + it.pourquoi.split(' : ')[0] + '. Est-ce masculin, féminin, ou y en a-t-il plusieurs ?';
     },
 

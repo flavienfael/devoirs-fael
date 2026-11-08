@@ -869,8 +869,8 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
     indice(it){
       const V = v();
       if (it.type === 'qui') return `Regarde la fin du verbe : « ${it.forme} ». Dans le tableau de prendre, quelle personne finit comme ça ?`;
-      const a = V.astuces[G.grp(it.p)];
-      if (it.type === 'ecris') return `Le verbe a ${it.n} lettres. Qui fait l’action ? ${it.p}. ` + a;
+      /* Coup de pouce : la règle, jamais la forme exacte (règle v13) */
+      const a = {je:'Pense à la règle : avec je et tu, le verbe finit souvent par -s.', tu:'Pense à la règle : avec je et tu, le verbe finit souvent par -s.', il:'Pense à la règle : avec il, elle ou on, il n’y a jamais de -s à la fin du verbe.', nous:'Pense à la règle : avec nous, le verbe finit presque toujours de la même façon. Tu t’en souviens ?', vous:'Pense à la règle : avec vous, le verbe finit presque toujours de la même façon. Tu t’en souviens ?', ils:'Pense à la règle : avec ils et elles, le verbe finit par des lettres qu’on n’entend pas.'}[G.grp(it.p)];
       return `Qui fait l’action ? ${it.p}. ` + a;
     },
 

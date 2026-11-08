@@ -920,7 +920,7 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
     consigne(it, c){
       if (it.type === 'trou') return 'Trouve le mot qui manque dans le vers.';
       if (it.type === 'suite') return 'Quel vers vient juste après ?';
-      return c.mobile ? 'Touche les mots dans l’ordre pour écrire le vers.' : 'Clique sur les mots dans l’ordre pour écrire le vers.';
+      return c.mobile ? 'Touche les mots dans l’ordre pour remettre le vers en place.' : 'Clique sur les mots dans l’ordre pour remettre le vers en place.';
     },
 
     zone(it, c){
@@ -940,9 +940,9 @@ html.mobile .barre .suite{min-height:60px; font-size:1.15rem}
     },
 
     indice(it){
-      if (it.type === 'trou') { const n = it.answer.length; return `Le mot commence par « ${it.answer.charAt(0)} » et il a ${n} lettres. Redis le vers à voix haute.`; }
-      if (it.type === 'suite') return `Le vers qui suit commence par « ${it.answer.split(' ')[0]} ». Redis la strophe depuis le début.`;
-      return `Le vers commence par « ${it.answer.split(' ')[0]} ». Il a ${it.n} mots.` + (it.tuiles.length > it.n ? ' Attention : un mot est en trop !' : '');
+      if (it.type === 'trou') return 'Redis le vers à voix haute depuis le début : quel mot de ton poème a du sens ici ?';
+      if (it.type === 'suite') return 'Redis la strophe depuis le début, sans regarder : qu’est-ce qui vient juste après ?';
+      return `Redis le vers dans ta tête. Le premier mot commence par une majuscule. Il a ${it.n} mots.` + (it.tuiles.length > it.n ? ' Attention : un mot est en trop !' : '');
     },
 
     barre(it, c){
